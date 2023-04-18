@@ -1,7 +1,7 @@
 <launch>
 
   <!-- Node general configuration -->
-  <arg name="device" default="192.168.1.10"
+  <arg name="device" default="10.75.15.10"
         doc="Device IPv4 address" />
 
   <arg name="respawn" default="false"
@@ -56,7 +56,7 @@
        doc="RTP element configuration for color stream" />
 
   <!-- Push down all topics/nodelets into "camera" namespace -->
-  <group ns="camera">
+  <group ns="$(arg camera)">
 
     <!-- Start nodelet manager -->
     <arg name="manager" value="$(arg camera)_nodelet_manager" />
@@ -92,7 +92,7 @@
     <node pkg="tf2_ros"
       type="static_transform_publisher"
       name="camera_depth_tf_publisher"
-      args="-0.0195 -0.005 0 0 0 0 camera_link $(arg depth_frame_id)" />
+      args="-0.0195 0.005 0 0 0 0 camera_link $(arg depth_frame_id)" />
 
     <node pkg="tf2_ros"
       type="static_transform_publisher"
